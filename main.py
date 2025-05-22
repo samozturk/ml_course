@@ -1,3 +1,5 @@
+
+
 # --- Data Types ---
 # Numbers
 integer_var = 10
@@ -380,5 +382,158 @@ if 'df_from_csv' in locals(): # Check if df_from_csv was loaded successfully
     print(df_from_csv[(df_from_csv['feature2'] > 1.0) & (df_from_csv['target'] == 0)])
 else:
     print("\nSkipping CSV DataFrame exploration as 'sample_data.csv' was not loaded.")
+
+
+import numpy as np
+import pandas as pd
+
+# --- NumPy Arrays ---
+print("--- NumPy Arrays ---")
+# Creating NumPy arrays
+list_data = [1, 2, 3, 4, 5]
+np_array1 = np.array(list_data)
+print(f"1D NumPy array from list: {np_array1}, type: {type(np_array1)}, dtype: {np_array1.dtype}")
+
+list_of_lists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+np_array2d = np.array(list_of_lists)
+print(f"\n2D NumPy array:\n{np_array2d}")
+print(f"Shape: {np_array2d.shape}, Dimensions: {np_array2d.ndim}, Size: {np_array2d.size}")
+
+# Special arrays
+zeros_array = np.zeros((2, 3)) # Array of all zeros
+ones_array = np.ones((3, 2))   # Array of all ones
+eye_array = np.eye(3)          # Identity matrix
+range_array = np.arange(0, 10, 2) # Like Python's range, but returns an array (start, stop, step)
+linspace_array = np.linspace(0, 1, 5) # Array of evenly spaced values (start, stop, num_samples)
+random_array = np.random.rand(2, 2) # Random values in [0, 1)
+random_int_array = np.random.randint(0, 10, size=(3,3)) # Random integers
+
+print(f"\nZeros array (2x3):\n{zeros_array}")
+print(f"\nRange array (0-10, step 2): {range_array}")
+print(f"\nLinspace array (0-1, 5 samples): {linspace_array}")
+print(f"\nRandom array (2x2):\n{random_array}")
+
+# --- Array Indexing and Slicing (similar to lists, but more powerful) ---
+print("\n--- Array Indexing and Slicing ---")
+arr = np.arange(10, 20)
+print(f"Original array: {arr}")
+print(f"Element at index 3: {arr[3]}")
+print(f"Slice from index 2 to 5 (exclusive): {arr[2:5]}")
+arr[2:5] = 100 # Assign a scalar to a slice
+print(f"Array after broadcast assignment: {arr}")
+
+arr2d = np.array([[1,2,3],[4,5,6],[7,8,9]])
+print(f"\nOriginal 2D array:\n{arr2d}")
+print(f"Element at row 1, col 2: {arr2d[1, 2]} or {arr2d[1][2]}")
+print(f"First row: {arr2d[0, :]}") # or arr2d[0]
+print(f"Second column: {arr2d[:, 1]}")
+print(f"Sub-array (rows 0-1, cols 1-2):\n{arr2d[0:2, 1:3]}")
+
+# Boolean indexing
+bool_idx = arr2d > 5
+print(f"\nBoolean index (elements > 5):\n{bool_idx}")
+print(f"Elements greater than 5:\n{arr2d[bool_idx]}") # Returns a 1D array
+print(f"Elements in arr2d greater than 5 (shorthand):\n{arr2d[arr2d > 5]}")
+
+# --- Vectorization (Element-wise operations) ---
+print("\n--- Vectorization ---")
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+print(f"Array a: {a}")
+print(f"Array b: {b}")
+print(f"a + b (element-wise sum): {a + b}")
+print(f"a * 2 (scalar multiplication): {a * 2}")
+print(f"a ** 2 (element-wise square): {a ** 2}")
+print(f"np.sin(a) (universal function): {np.sin(a)}")
+
+# Mathematical operations on 2D arrays
+arr_A = np.array([[1,2],[3,4]])
+arr_B = np.array([[5,6],[7,8]])
+print(f"\nArray A:\n{arr_A}")
+print(f"Array B:\n{arr_B}")
+print(f"A + B (element-wise sum):\n{arr_A + arr_B}")
+print(f"A * B (element-wise product, NOT matrix multiplication):\n{arr_A * arr_B}")
+print(f"Matrix multiplication (dot product) A @ B or np.dot(A,B):\n{arr_A @ arr_B}") # or np.dot(arr_A, arr_B)
+
+# --- Aggregation functions ---
+print("\n--- Aggregation Functions ---")
+big_array = np.random.randn(1000) # 1000 random numbers from standard normal distribution
+print(f"Sum of big_array: {big_array.sum()} or {np.sum(big_array)}")
+print(f"Mean of big_array: {big_array.mean()}")
+print(f"Std dev of big_array: {big_array.std()}")
+print(f"Min/Max of big_array: {big_array.min()}, {big_array.max()}")
+
+arr2d_agg = np.array([[1,5,3],[4,2,6]])
+print(f"\narr2d_agg:\n{arr2d_agg}")
+print(f"Sum of all elements: {arr2d_agg.sum()}")
+print(f"Sum along columns (axis=0): {arr2d_agg.sum(axis=0)}") # Result is [1+4, 5+2, 3+6]
+print(f"Sum along rows (axis=1): {arr2d_agg.sum(axis=1)}")   # Result is [1+5+3, 4+2+6]
+
+# --- Reshaping Arrays ---
+print("\n--- Reshaping Arrays ---")
+original = np.arange(1, 13) # 1 to 12
+print(f"Original array (1D, 12 elements): {original}")
+reshaped1 = original.reshape(3, 4) # Reshape to 3 rows, 4 columns
+print(f"Reshaped to 3x4:\n{reshaped1}")
+reshaped2 = original.reshape(2, 2, 3) # Reshape to 2 blocks of 2x3 matrices
+print(f"Reshaped to 2x2x3:\n{reshaped2}")
+# Use -1 to infer one dimension: original.reshape(4, -1) will be 4x3
+
+# Flatten an array
+flattened = reshaped1.flatten() # Creates a copy
+raveled = reshaped1.ravel()     # May return a view if possible (more memory efficient)
+print(f"Flattened array: {flattened}")
+
+
+# --- Pandas Integration ---
+print("\n--- Pandas Integration with NumPy ---")
+# Pandas uses NumPy arrays under the hood for its Series and DataFrames
+df = pd.DataFrame({
+    'A': np.random.rand(5),
+    'B': np.random.randint(1, 10, size=5),
+    'C': ['x', 'y', 'z', 'x', 'y']
+})
+print("DataFrame created with NumPy arrays:")
+print(df)
+
+# Get NumPy array from a DataFrame column (Series)
+col_A_np = df['A'].to_numpy() # Recommended way
+# col_A_np_values = df['A'].values # Older way, still works
+print(f"\nColumn 'A' as NumPy array: {col_A_np}, type: {type(col_A_np)}")
+
+# Get NumPy array from the entire DataFrame
+df_np = df[['A', 'B']].to_numpy() # For selected numerical columns
+print(f"\nDataFrame (cols A, B) as NumPy array:\n{df_np}")
+
+# Applying NumPy ufuncs to Pandas Series
+series = pd.Series([1, 4, 9, 16])
+print(f"\nOriginal Series: \n{series}")
+sqrt_series_np = np.sqrt(series) # Applying NumPy's sqrt function
+print(f"Square root of Series using NumPy:\n{sqrt_series_np}")
+
+
+# --- Merging/Joining DataFrames (Recap/Extend Pandas section if needed) ---
+# This is more Pandas than NumPy, but often used together
+left_df = pd.DataFrame({'key': ['K0', 'K1', 'K2'], 'A': ['A0', 'A1', 'A2']})
+right_df = pd.DataFrame({'key': ['K0', 'K1', 'K3'], 'B': ['B0', 'B1', 'B3']})
+
+print(f"\nLeft DataFrame:\n{left_df}")
+print(f"Right DataFrame:\n{right_df}")
+
+# Merge (like SQL join)
+merged_inner = pd.merge(left_df, right_df, on='key', how='inner')
+print(f"\nInner merge on 'key':\n{merged_inner}")
+
+merged_left = pd.merge(left_df, right_df, on='key', how='left')
+print(f"\nLeft merge on 'key':\n{merged_left}")
+
+# Concatenation
+df1 = pd.DataFrame({'A': [1,2], 'B': [3,4]})
+df2 = pd.DataFrame({'A': [5,6], 'B': [7,8]})
+concatenated_rows = pd.concat([df1, df2], axis=0) # axis=0 for rows (default)
+print(f"\nConcatenated along rows:\n{concatenated_rows}")
+concatenated_cols = pd.concat([df1, df2.reset_index(drop=True)], axis=1) # axis=1 for columns, ensure index align
+print(f"\nConcatenated along columns:\n{concatenated_cols}")
 
 
