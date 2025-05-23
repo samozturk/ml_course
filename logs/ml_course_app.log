@@ -1,0 +1,13 @@
+2025-05-23 06:05:08,015 - __main__ - INFO - Application started. This is an informational message.
+2025-05-23 06:05:08,015 - __main__ - WARNING - A potential issue was detected, but the application can continue.
+2025-05-23 06:05:08,015 - __main__ - ERROR - An error occurred. Something went wrong.
+2025-05-23 06:05:08,015 - __main__ - CRITICAL - A critical error occurred. The application might be unable to continue.
+2025-05-23 06:05:08,015 - __main__ - INFO - Starting to process data item: {'value': 10}
+2025-05-23 06:05:08,015 - __main__ - INFO - Successfully processed data item. Result: 20
+2025-05-23 06:05:08,015 - __main__ - INFO - Starting to process data item: None
+2025-05-23 06:05:08,015 - __main__ - ERROR - Invalid data type for item: <class 'NoneType'>. Expected dict.
+2025-05-23 06:05:08,015 - __main__ - ERROR - Error processing data item None: Data item must be a dictionary.
+Traceback (most recent call last):
+  File "/Users/sam/Documents/codes/ml_course/notebooks/demo.py", line 48, in process_data_with_logging
+    raise TypeError("Data item must be a dictionary.")
+TypeError: Data item must be a dictionary.

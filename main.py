@@ -537,3 +537,10 @@ concatenated_cols = pd.concat([df1, df2.reset_index(drop=True)], axis=1) # axis=
 print(f"\nConcatenated along columns:\n{concatenated_cols}")
 
 
+
+
+from pydantic import BaseModel, Field
+class Person(BaseModel):
+    name: str
+    age: int = Field(..., gt=0)  # Age must be greater than 0
+    email: str = Field(..., regex=r'^[\w\.-]+@[\w\.-]+\.\w+$')  # Simple regex for email validation

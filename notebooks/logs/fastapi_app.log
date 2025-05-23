@@ -1,0 +1,15 @@
+2025-05-23 06:31:13,648 - fast_api - INFO - Root endpoint '/' accessed.
+2025-05-23 06:32:08,978 - fast_api - INFO - Received prediction request with 1 instances.
+2025-05-23 06:32:08,980 - fast_api - INFO - Predicting for features: {'feature1_num': 1.0, 'feature2_num': 2.0, 'feature3_cat': 'A', 'feature4_ord': 'B', 'feature5_nan_num': 0.0}
+2025-05-23 06:32:08,980 - fast_api - INFO - Generated predictions: [4.0]
+2025-05-23 06:32:09,743 - fast_api - INFO - Received prediction request with 1 instances.
+2025-05-23 06:32:09,743 - fast_api - INFO - Predicting for features: {'feature1_num': 1.0, 'feature2_num': 2.0, 'feature3_cat': 'A', 'feature4_ord': 'B', 'feature5_nan_num': 0.0}
+2025-05-23 06:32:09,743 - fast_api - INFO - Generated predictions: [4.0]
+2025-05-23 14:38:03,240 - fast_api - INFO - Root endpoint '/' accessed.
+2025-05-23 14:38:24,415 - fast_api - INFO - Health check '/health' accessed.
+2025-05-23 14:38:27,159 - fast_api - INFO - Health check '/health' accessed.
+2025-05-23 15:25:21,924 - fast_api - INFO - Root endpoint '/' accessed.
+2025-05-23 15:25:31,461 - fast_api - INFO - Root endpoint '/' accessed.
+2025-05-23 15:31:27,253 - fast_api - INFO - Received prediction request with 1 instances.
+2025-05-23 15:31:27,254 - fast_api - INFO - Predicting for features: {'feature1_num': 10.0, 'feature2_num': 10.0, 'feature3_cat': 'A', 'feature4_ord': 'string', 'feature5_nan_num': 0.0}
+2025-05-23 15:31:27,254 - fast_api - INFO - Generated predictions: [21.0]
